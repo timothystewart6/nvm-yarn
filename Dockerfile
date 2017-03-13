@@ -15,14 +15,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV NVM_DIR /usr/local/nvm
+ENV PATH /usr/local/nvm:$PATH
 
 # Install nvm
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash \
+CMD curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash \
     && source $NVM_DIR/nvm.sh \
-
-# Add files
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-ONBUILD ADD . /usr/src/app
-ONBUILD . $NVM_DIR/nvm.sh && nvm install
+    && chmod +x /usr/local/nvm/nvm.sh \
+    && nvm install
 
