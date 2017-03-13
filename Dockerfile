@@ -3,6 +3,11 @@ FROM ubuntu:latest
 # Replace shell with bash so we can source files
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
+# Add files
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+ONBUILD ADD . /usr/src/app
+
 # Update repository sources list
 # Install dependencies
 # Install yarn
@@ -24,3 +29,4 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh
 RUN yarn -v
 
 ENTRYPOINT . $NVM_DIR/nvm.sh && nvm install
+
