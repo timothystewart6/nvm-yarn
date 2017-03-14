@@ -1,7 +1,6 @@
 FROM ubuntu:latest
 
-# Replace shell with bash so we can source files
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+
 
 # Update repository sources list
 # Install dependencies
@@ -13,6 +12,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends && \
     apt-get update && apt-get install -y yarn && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Replace shell with bash so we can source files
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 ENV NVM_DIR=/root/.nvm
 
