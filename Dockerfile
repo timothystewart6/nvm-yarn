@@ -20,9 +20,6 @@ ENV NVM_DIR=/root/.nvm
 
 # Install nvm
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
-
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
-ENTRYPOINT bash
-CMD source ~/.nvm/nvm.sh
-CMD bash
+CMD source ~/.nvm/nvm.sh && cd /usr/src/app && nvm install
