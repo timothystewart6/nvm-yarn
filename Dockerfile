@@ -10,6 +10,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends && \
 
 ENV NVM_DIR=/root/.nvm
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash
-RUN source ~/.nvm/nvm.sh
-CMD bash
+CMD curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh | bash \
+    && source ~/.nvm/nvm.sh \
+    && nvm install
